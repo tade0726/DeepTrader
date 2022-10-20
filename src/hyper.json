@@ -31,7 +31,8 @@
     "norm_type": "standard",
     "epochs": 1500,
     "market": "CSI100",
-    "device": "cuda",
+    "device": "cpu",
     "relation_file": "industry_classification.npy",
-    "trade_len": 21
+    "trade_len": 21,
+    "msu_bool": false
 }

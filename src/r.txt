@@ -1,0 +1,8 @@
+Pytorch == 1.3.1
+Numpy >= 1.18.1
+TensorFlow >= 1.14.0
+Pandas
+tqdm
+pytorch
+torchvision
+tensorboard

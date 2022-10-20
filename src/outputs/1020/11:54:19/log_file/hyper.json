@@ -34,8 +34,9 @@
     "device": "cpu",
     "relation_file": "industry_classification.npy",
     "trade_len": 21,
+    "msu_bool": false,
+    "config": "hyper.json",
     "seed": -1,
     "spatial_bool": true,
-    "msu_bool": false,
     "addaptive_adj_bool": true
 }
