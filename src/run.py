@@ -86,14 +86,25 @@ def run(func_args):
             market_history = None
             allow_short = False
 
+        elif 'TOKENS' in func_args.market:
+            stocks_data = np.load(data_prefix + 'stocks_data.npy')
+            rate_of_return = np.load(data_prefix + 'ror.npy')
+            market_history = np.load(data_prefix + 'market_data.npy')
+            assert stocks_data.shape[:-1] == rate_of_return.shape, 'file size error'
+            A = torch.from_numpy(np.load(matrix_path)).float().to(func_args.device)
+            test_idx = 479
+            allow_short = True
+            
+            
+
         env = PortfolioEnv(assets_data=stocks_data, market_data=market_history, rtns_data=rate_of_return,
                            in_features=func_args.in_features, val_idx=test_idx, test_idx=test_idx,
                            batch_size=func_args.batch_size, window_len=func_args.window_len, trade_len=func_args.trade_len,
                            max_steps=func_args.max_steps, mode=func_args.mode, norm_type=func_args.norm_type,
                            allow_short=allow_short)
 
-        # supports = [A]
-        supports = None
+        supports = [A]
+        # supports = None
 
         actor = RLActor(supports, func_args).to(func_args.device)
         agent = RLAgent(env, actor, func_args)
